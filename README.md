@@ -3,10 +3,10 @@
 
 
  Library include:
- -> Reading temperature with 0.5*C accuracy
- -> Changing mode (Shutdown or normal mode to minimize power consumption)
- -> Setting temperature in programmable temperature threshold and hysteresis set points registers
-   |-> Setting Falout tolerance filter  
+ * Reading temperature with 0.5*C accuracy
+ * Changing mode (Shutdown or normal mode to minimize power consumption)
+ * Setting temperature in programmable temperature threshold and hysteresis set points registers
+   - Setting Falout tolerance filter  
 
 
 
