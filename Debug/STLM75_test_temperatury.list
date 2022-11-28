@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  0001f913  00000000  00000000  00030e70  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000e9f8  00000000  00000000  00050783  2**0
+ 18 .debug_line   0000e9fa  00000000  00000000  00050783  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000bd45d  00000000  00000000  0005f17b  2**0
+ 19 .debug_str    000bd45d  00000000  00000000  0005f17d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000053  00000000  00000000  0011c5d8  2**0
+ 20 .comment      00000053  00000000  00000000  0011c5da  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00002774  00000000  00000000  0011c62c  2**2
+ 21 .debug_frame  00002774  00000000  00000000  0011c630  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -869,7 +869,10 @@ static uint8_t STLM75_Write16(STLM75_t *stlm, uint8_t Register, uint8_t* Value)
  80006ac:	bd80      	pop	{r7, pc}
 
 080006ae <STLM75_Init>:
-
+ *  \param[in,out] stlm	pointer to sensor structure.
+ *  \param[in] stlm75_i2c	i2c handler
+ *  \param[in]	address		device address set on the hardware (range 0 - 7). (configured by Pull-up / down resistors A0,A1,A2, see datasheet)
+ */
 void STLM75_Init(STLM75_t *stlm, I2C_HandleTypeDef* stlm75_i2c, uint8_t address)
 {
  80006ae:	b480      	push	{r7}
@@ -909,7 +912,10 @@ void STLM75_Init(STLM75_t *stlm, I2C_HandleTypeDef* stlm75_i2c, uint8_t address)
  80006ec:	4770      	bx	lr
 
 080006ee <STLM75_SetMode>:
-
+ *
+ * \param[in] stlm Pointer to sensor structure.
+ * \param[in] mode Mode to be set (use macro STLM75_MODE_SHUTDOWN or STLM75_MODE_NORMAL).
+ */
 void STLM75_SetMode(STLM75_t *stlm, uint8_t mode)
 {
  80006ee:	b580      	push	{r7, lr}
@@ -958,8 +964,11 @@ void STLM75_SetMode(STLM75_t *stlm, uint8_t mode)
  8000740:	bd80      	pop	{r7, pc}
 
 08000742 <STLM75_SetTepmerature>:
-
-int8_t STLM75_SetTepmerature(STLM75_t *stlm, uint8_t mem_address, int8_t temperature)
+ * 				Use macro STLM75_REG_HYSTERESIS or STLM75_REG_TEMP_OVERLIMIT.
+ * \param[in]	temperature Temperature value to set. (Device allows to set temp with 0.5 deg accuracy
+ * 				but only int value possibility on this function).
+ */
+int8_t STLM75_SetTepmerature(STLM75_t *stlm, uint8_t mem_address, int8_t temperature	)
 {
  8000742:	b580      	push	{r7, lr}
  8000744:	b084      	sub	sp, #16
@@ -1003,7 +1012,10 @@ int8_t STLM75_SetTepmerature(STLM75_t *stlm, uint8_t mem_address, int8_t tempera
  8000782:	bd80      	pop	{r7, pc}
 
 08000784 <STLM75_SetFaultTolerance>:
-
+ * \param[in]	consecutive_faults (0-3). Use macro STLM75_ALARM_FT_x (x = 1, 2, 4 or 6)
+ *
+ * \retval		error status
+ */
 int8_t STLM75_SetFaultTolerance(STLM75_t *stlm, uint8_t consecutive_faults)
 {
  8000784:	b580      	push	{r7, lr}
@@ -1057,7 +1069,10 @@ int8_t STLM75_SetFaultTolerance(STLM75_t *stlm, uint8_t consecutive_faults)
  80007de:	bd80      	pop	{r7, pc}
 
 080007e0 <STLM75_ReadTemperature>:
-
+ *
+ * \param[in]	*stlm Pointer to sensor structure.
+ * \retval Temperatre with 0.5 accuracy in Celsius
+ */
 float STLM75_ReadTemperature(STLM75_t *stlm)
 {
  80007e0:	b580      	push	{r7, lr}

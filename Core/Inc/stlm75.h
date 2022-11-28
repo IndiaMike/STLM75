@@ -1,15 +1,16 @@
 /*
- * stlm75.h
- *
- *  Created on: 24 lis 2022
- *      Author: Grzegorz S
+ * @file	stlm75.h
+ * @created	on: 24 lis 2022
+ * @author:	Grzegorz S
+ * 			github.com/IndiaMike
+ * @brief	STLM75 thermometer library DEFINITIONS and FUNCTIONS PROTOTYPES.
  */
 
 #ifndef INC_STLM75_H_
 #define INC_STLM75_H_
 
 
-#define STLM75_TIMEOUT 100	// timeout for blocking functions
+#define STLM75_TIMEOUT 100	/*!< timeout for blocking functions */
 
 //registers
 #define	STLM75_REG_TEMPERATURE			0x00
