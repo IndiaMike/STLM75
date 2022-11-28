@@ -58,7 +58,7 @@ void STLM75_SetMode(STLM75_t *stlm, uint8_t mode)
 	STLM75_Write8(stlm, STLM75_REG_CONFIGURATION, tmp);
 }
 
-int8_t STLM75_SetTepmerature(STLM75_t *stlm, uint8_t mem_address, int8_t temperature)
+int8_t STLM75_SetTepmerature(STLM75_t *stlm, uint8_t mem_address, int8_t temperature	)
 {
 	if(mem_address != STLM75_REG_HYSTERESIS && mem_address != STLM75_REG_TEMP_OVERLIMIT) return -1;
 
