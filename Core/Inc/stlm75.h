@@ -10,7 +10,7 @@
 #define INC_STLM75_H_
 
 
-#define STLM75_TIMEOUT 100	/*!< timeout for blocking functions */
+#define STLM75_TIMEOUT 10	/*!< timeout for blocking functions */
 
 //registers
 #define	STLM75_REG_TEMPERATURE			0x00
