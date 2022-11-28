@@ -56,6 +56,14 @@ STLM75_t stlm75_7;
 
 volatile float temperature[8];
 
+STLM75_t* termometers[8] = { &stlm75_0,
+							 &stlm75_1,
+							 &stlm75_2,
+							 &stlm75_3,
+							 &stlm75_4,
+							 &stlm75_5,
+							 &stlm75_6,
+							 &stlm75_7};
 
 
 
@@ -81,7 +89,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
 
-	STLM75_t* termometers[8] = { &stlm75_0,  &stlm75_1,  &stlm75_2,  &stlm75_3,  &stlm75_4,  &stlm75_5,  &stlm75_6,  &stlm75_7};
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -133,29 +141,6 @@ int main(void)
 	  		  	  temperature[i] = STLM75_ReadTemperature(termometers[i]);
 	  		  	  HAL_Delay(100);
 	  	  	  }
-
-/*
-		temperature = STLM75_ReadTemperature(&stlm75_1);
-		HAL_Delay(100);
-
-		temperature = STLM75_ReadTemperature(&stlm75_2);
-		HAL_Delay(100);
-
-		temperature = STLM75_ReadTemperature(&stlm75_3);
-		HAL_Delay(100);
-
-		temperature = STLM75_ReadTemperature(&stlm75_4);
-		HAL_Delay(100);
-
-		temperature = STLM75_ReadTemperature(&stlm75_5);
-		HAL_Delay(100);
-
-		temperature = STLM75_ReadTemperature(&stlm75_6);
-		HAL_Delay(100);
-
-		temperature = STLM75_ReadTemperature(&stlm75_7);
-		HAL_Delay(100);
-*/
 
 
     /* USER CODE END WHILE */
